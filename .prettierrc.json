@@ -1,0 +1,10 @@
+{
+  "printWidth": 110,
+  "endOfLine": "auto",
+  "singleQuote": true,
+  "trailingComma": "all",
+  "importOrder": ["^react(.*)", "icm", "<THIRD_PARTY_MODULES>", "@/(.*)", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-css-order"]
+}
