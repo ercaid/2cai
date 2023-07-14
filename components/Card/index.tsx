@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { getDayDiff } from './config';
 import styles from './index.module.scss';
 
-interface CardProps {
+export interface CardProps {
   /** 描述 */
   description: string;
   /** 具体时间 */
@@ -31,7 +31,7 @@ export const Card = ({ description, date, emoji, needAccurate = false, backgroun
   }, [date]);
 
   return (
-    <div className={styles.card} style={{ background }}>
+    <div className={styles.cardContainer} style={{ background }}>
       <div className={styles.content}>
         <div className={styles.description}>{description}</div>
         <div className={styles.date}>{date}</div>
