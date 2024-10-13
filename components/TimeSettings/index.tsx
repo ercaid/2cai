@@ -50,13 +50,12 @@ export const TimeSettings = () => {
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>设置</DrawerTitle>
-          <DrawerDescription>请输入一些基本信息</DrawerDescription>
         </DrawerHeader>
         <div className="px-4">
           <TimePicker date={startTime} setDate={setStartTime} label="上班时间" />
-          <div className="py-[12px]" />
+          <div className="py-[8px]" />
           <TimePicker date={endTime} setDate={setEndTime} label="下班时间" />
-          <div className="py-[12px]" />
+          <div className="py-[8px]" />
           <div className="mb-2">
             <Label>月薪</Label>
           </div>
@@ -66,7 +65,7 @@ export const TimeSettings = () => {
             value={salary || undefined}
             onChange={(e) => setSalary(Number(e.target.value))}
           />
-          <div className="py-[8px]" />
+          <div className="py-[4px]" />
         </div>
         <DrawerFooter>
           <div className="flex">
