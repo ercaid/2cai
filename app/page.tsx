@@ -75,7 +75,7 @@ const App = () => {
       <CheckList checkList={checkList} />
       <Image src={CoinGIF} alt="coin" className={styles.coin} />
       <div className={styles.calculator}>{time?.format('HH:mm:ss') ?? '00:00:00'}</div>
-      {salary ? (
+      {salary !== undefined ? (
         <>
           <div className={styles.text}>今日收入</div>
           <div className="flex items-center">

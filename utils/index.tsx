@@ -74,9 +74,9 @@ export const calTodaysSalary = () => {
   const currentTime = dayjs();
   const elapsedTime = currentTime.diff(settings.startTime, 'millisecond');
   const totalTime = dayjs(settings.endTime).diff(settings.startTime, 'millisecond');
+  const curTime = elapsedTime < 0 ? 0 : elapsedTime > totalTime ? totalTime : elapsedTime;
 
-  const curSalary =
-    (settings.salary / 30) * ((elapsedTime > totalTime ? totalTime : elapsedTime) / totalTime);
+  const curSalary = (settings.salary / 30) * (curTime / totalTime);
 
   return curSalary;
 };
