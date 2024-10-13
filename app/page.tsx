@@ -46,21 +46,19 @@ const App = () => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <TimeSettings />
-      <div className={styles.container}>
-        <Image src={CoinGIF} alt="coin" className={styles.coin} />
-        <div className={styles.calculator}>{time?.format('HH:mm:ss') ?? '00:00:00'}</div>
-        <div className={styles.text}>You&apos;ve made: </div>
-        <div className={styles.money}>${((time?.asSeconds() ?? 0) * 0.02).toFixed(2)}</div>
-        <div className={styles.actions}>
-          <div className={styles.btn} onClick={handleStartOrStop}>
-            {state === 'start' ? 'stop' : 'start'}
-          </div>
-          <div className={styles.btn}>clear</div>
+      <Image src={CoinGIF} alt="coin" className={styles.coin} />
+      <div className={styles.calculator}>{time?.format('HH:mm:ss') ?? '00:00:00'}</div>
+      <div className={styles.text}>You&apos;ve made: </div>
+      <div className={styles.money}>${((time?.asSeconds() ?? 0) * 0.02).toFixed(2)}</div>
+      <div className={styles.actions}>
+        <div className={styles.btn} onClick={handleStartOrStop}>
+          {state === 'start' ? 'stop' : 'start'}
         </div>
+        <div className={styles.btn}>clear</div>
       </div>
-    </>
+    </div>
   );
 };
 
