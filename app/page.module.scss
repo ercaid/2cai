@@ -3,13 +3,46 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 16px 16px;
-  font-size: 14px;
+  height: 100vh;
 
-  .title {
-    margin-bottom: 20px;
-    width: 100%;
-    font-weight: bold;
-    font-size: 18px;
+  .coin {
+    width: 200px;
+    height: 200px;
+  }
+
+  .calculator {
+    margin: 8px 0 12px;
+    font-size: 28px;
+  }
+
+  .text {
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+
+  .money {
+    font-size: 28px;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    margin-top: 18px;
+  }
+
+  .btn {
+    border-radius: 8px;
+    background: #000;
+    padding: 4px 12px;
+    color: #fff;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+
+  .disable {
+    cursor: not-allowed;
+    background: #666;
   }
 }
