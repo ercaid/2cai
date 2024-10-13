@@ -12,6 +12,10 @@ body {
   font-family: ”Microsoft YaHei”, Arial, Helvetica, sans-serif, ”宋体”;
 }
 
+button {
+  outline: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
