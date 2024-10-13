@@ -8,6 +8,8 @@ import Image from 'next/image';
 
 import CoinGIF from '@/assets/images/coin.gif';
 import { TimeSettings } from '@/components/TimeSettings';
+import { Button } from '@/components/ui/button';
+import { calTodaysSalary, checkManager } from '@/utils';
 
 import styles from './page.module.scss';
 
@@ -16,18 +18,32 @@ dayjs.extend(duration);
 const App = () => {
   const [state, setState] = useState<'start' | 'stop'>('stop');
   const [time, setTime] = useState<Duration | undefined>();
+  const [salary, setSalary] = useState<number>();
   const [startTime, setStartTime] = useState<Dayjs | undefined>();
+
+  useEffect(() => {
+    const latestCheck = checkManager.getLatestCheck();
+    // 打卡开始，暂未结束
+    if (latestCheck?.startTime && !latestCheck?.endTime) {
+      setStartTime(dayjs(latestCheck?.startTime));
+      setState('start');
+    }
+    let interval;
+    interval = setInterval(() => {
+      setSalary(calTodaysSalary());
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   useEffect(() => {
     let interval: any;
     if (state === 'start') {
-      // 启动计时器
       interval = setInterval(() => {
         const currentTime = dayjs();
         const elapsedTime = currentTime.diff(startTime, 'millisecond');
         const formattedTime = dayjs.duration(elapsedTime);
-        console.log({ currentTime, startTime, formattedTime });
-
         setTime(formattedTime);
       }, 1000);
     }
@@ -38,10 +54,15 @@ const App = () => {
 
   const handleStartOrStop = () => {
     if (state === 'stop') {
-      !startTime && setStartTime(dayjs());
+      const now = dayjs();
+      !startTime && setStartTime(now);
+      checkManager.setCheckList({ startTime: +now });
       setState('start');
     } else {
       setState('stop');
+      checkManager.setCheckList({ startTime: startTime?.valueOf(), endTime: +dayjs() });
+      setStartTime(undefined);
+      setTime(undefined);
     }
   };
 
@@ -50,13 +71,17 @@ const App = () => {
       <TimeSettings />
       <Image src={CoinGIF} alt="coin" className={styles.coin} />
       <div className={styles.calculator}>{time?.format('HH:mm:ss') ?? '00:00:00'}</div>
-      <div className={styles.text}>You&apos;ve made: </div>
-      <div className={styles.money}>${((time?.asSeconds() ?? 0) * 0.02).toFixed(2)}</div>
+      {salary ? (
+        <>
+          <div className={styles.text}>今日收入</div>
+          <div className="flex items-center">
+            <div className="text-[28px]">{salary.toFixed(2)}</div>
+            <div className="text-[14px] font-semibold ml-[8px]">元</div>
+          </div>
+        </>
+      ) : null}
       <div className={styles.actions}>
-        <div className={styles.btn} onClick={handleStartOrStop}>
-          {state === 'start' ? 'stop' : 'start'}
-        </div>
-        <div className={styles.btn}>clear</div>
+        <Button onClick={handleStartOrStop}>{state === 'start' ? '下班打卡 🥳' : '上班打卡 🫨'}</Button>
       </div>
     </div>
   );
