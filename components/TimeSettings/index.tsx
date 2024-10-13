@@ -68,7 +68,7 @@ export const TimeSettings = () => {
           <div className="py-[4px]" />
         </div>
         <DrawerFooter>
-          <div className="flex">
+          <div className="flex mb-[12px]">
             <DrawerClose>
               <Button variant="outline">取消</Button>
             </DrawerClose>
