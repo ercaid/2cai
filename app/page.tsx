@@ -17,7 +17,6 @@ const MOCK_LIST: CardProps[] = [
     date: '2023/07/21 23:00:00',
     emoji: '🥰',
     background: '#fbeceb',
-    // needAccurate: true,
   },
 ];
 
