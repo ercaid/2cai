@@ -30,7 +30,7 @@ const App = () => {
       setStartTime(dayjs(latestCheck?.startTime));
       setState('start');
     }
-    let interval;
+    let interval: any;
     interval = setInterval(() => {
       setSalary(calTodaysSalary());
     }, 1000);
