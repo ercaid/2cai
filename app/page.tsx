@@ -7,6 +7,7 @@ import duration, { Duration } from 'dayjs/plugin/duration';
 import Image from 'next/image';
 
 import CoinGIF from '@/assets/images/coin.gif';
+import { CheckList } from '@/components/CheckList';
 import { TimeSettings } from '@/components/TimeSettings';
 import { Button } from '@/components/ui/button';
 import { calTodaysSalary, checkManager } from '@/utils';
@@ -20,6 +21,7 @@ const App = () => {
   const [time, setTime] = useState<Duration | undefined>();
   const [salary, setSalary] = useState<number>();
   const [startTime, setStartTime] = useState<Dayjs | undefined>();
+  const [checkList, setCheckList] = useState(checkManager.getCheckList());
 
   useEffect(() => {
     const latestCheck = checkManager.getLatestCheck();
@@ -64,11 +66,13 @@ const App = () => {
       setStartTime(undefined);
       setTime(undefined);
     }
+    setCheckList(checkManager.getCheckList());
   };
 
   return (
     <div className={styles.container}>
       <TimeSettings />
+      <CheckList checkList={checkList} />
       <Image src={CoinGIF} alt="coin" className={styles.coin} />
       <div className={styles.calculator}>{time?.format('HH:mm:ss') ?? '00:00:00'}</div>
       {salary ? (

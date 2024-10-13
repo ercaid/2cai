@@ -24,7 +24,7 @@ export const settingManager = {
   setLocalSettings,
 };
 
-interface IChecks {
+export interface IChecks {
   startTime?: number;
   endTime?: number;
 }
