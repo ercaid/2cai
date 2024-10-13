@@ -73,13 +73,15 @@ export const TimeSettings = () => {
             <DrawerClose>
               <Button variant="outline">取消</Button>
             </DrawerClose>
-            <Button
-              className="flex-1 ml-2"
-              disabled={!startTime || !endTime || !salary}
-              onClick={handleConfirm}
-            >
-              <DrawerClose>确定</DrawerClose>
-            </Button>
+            <DrawerClose className="flex-1 ml-2" disabled={!startTime || !endTime || !salary}>
+              <Button
+                className="w-[100%]"
+                disabled={!startTime || !endTime || !salary}
+                onClick={handleConfirm}
+              >
+                确定
+              </Button>
+            </DrawerClose>
           </div>
         </DrawerFooter>
       </DrawerContent>

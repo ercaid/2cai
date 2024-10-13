@@ -78,12 +78,5 @@ export const calTodaysSalary = () => {
   const curSalary =
     (settings.salary / 30) * ((elapsedTime > totalTime ? totalTime : elapsedTime) / totalTime);
 
-  console.log('test::', {
-    curSalary,
-    settings,
-    elapsedTime,
-    totalTime,
-  });
-
   return curSalary;
 };
